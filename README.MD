@@ -10,6 +10,8 @@
 https://github.com/angristan/openvpn-install
 
 # Как запустить
+перейти в корень проекта и запустить
+
 docker compose up -d
 
 # Настроить прокси для Visual Studio Code
