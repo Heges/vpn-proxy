@@ -1,7 +1,7 @@
 services:
-  ai-vpn-proxy:
+  vpn-proxy:
     build: .
-    container_name: ai-vpn-proxy
+    container_name: vpn-proxy
     cap_add:
       - NET_ADMIN
     devices:
@@ -11,3 +11,9 @@ services:
     volumes:
       - ./vpn:/vpn:ro
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS -x http://127.0.0.1:8888 --connect-timeout 5 --max-time 15 https://api.ipify.org >/dev/null || exit 1"]
+      interval: 30s
+      timeout: 15s
+      retries: 3
+      start_period: 30s
